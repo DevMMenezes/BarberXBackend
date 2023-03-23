@@ -3,7 +3,12 @@ const swaggerAutogen = require('swagger-autogen')();
 const doc = {
   info: {
     title: 'Navalha App API',
+    
   },
+  schemes: [
+    "http", "https"
+  ],
+  
 };
 
 const outputFile = './swagger-output.json';

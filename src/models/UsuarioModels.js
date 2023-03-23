@@ -30,6 +30,12 @@ UsuarioModels.init({
         type: DataTypes.STRING(30),
         allowNull: true,
         field:"telefone"
+      },
+      bloqueado:{
+        type: DataTypes.STRING(1),
+        allowNull: false,
+        defaultValue: "N",
+        field:"bloqueado"
       }
 
 },

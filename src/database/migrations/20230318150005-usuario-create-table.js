@@ -31,6 +31,12 @@ module.exports = {
         allowNull: true,
         field:"telefone"
       },
+      bloqueado:{
+        type: Sequelize.STRING(1),
+        allowNull: false,
+        defaultValue: "N",
+        field:"bloqueado"
+      },
       createdAt: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.fn('NOW'),
