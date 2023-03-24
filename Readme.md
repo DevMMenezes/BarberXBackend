@@ -22,9 +22,18 @@ Mysql on linux (ubuntu)
 - sudo apt install mysql-server
 - sudo systemctl start mysql.service
 
+
 - sudo mysql
+- CREATE USER 'dev'@'%' IDENTIFIED BY 'navapp!@#'
 - ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'masterkey';
+GRANT ALL PRIVILEGES ON navapp.* TO 'dev'@'*'
+FLUSH PRIVILEGES;
 - exit
+
+
+PM2
+-https://pm2.io/docs/runtime/guide/installation/
+
 
 
 Gerar arquivo swagger auto gen
