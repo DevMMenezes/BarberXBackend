@@ -6,9 +6,7 @@ const doc = {
     
   },
   host:["200.98.200.58:3005"],
-  schemes: [
-    "http", "https"
-  ],
+  schemes: ["https"],
   
 };
 
@@ -17,6 +15,4 @@ const endpointsFiles = ['./index.js'];
 
 
 
-swaggerAutogen(outputFile, endpointsFiles, doc).then(async ()=>{
-    await import('./index.js')
-})
+swaggerAutogen(outputFile, endpointsFiles, doc);
