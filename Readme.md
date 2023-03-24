@@ -26,7 +26,7 @@ Mysql on linux (ubuntu)
 - sudo mysql
 - CREATE USER 'dev'@'%' IDENTIFIED BY 'navapp!@#'
 - ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'masterkey';
-GRANT ALL PRIVILEGES ON navapp.* TO 'dev'@'*'
+GRANT ALL PRIVILEGES ON navapp.* TO 'dev'@'%'
 FLUSH PRIVILEGES;
 - exit
 
