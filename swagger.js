@@ -5,6 +5,7 @@ const doc = {
     title: 'Navalha App API',
     
   },
+  host:["200.98.200.58:3005"],
   schemes: [
     "http", "https"
   ],
