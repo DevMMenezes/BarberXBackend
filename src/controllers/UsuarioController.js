@@ -7,7 +7,7 @@ exports.getUsuarios = async (req,res)=>{
     try {        
         const Data = await UsuarioModels.findAll();
 
-        return res.status(200).json({Data})
+         res.status(200).json({Data})
     } catch (error) {
      return res.status(400).json({error: error})  
     }
@@ -16,17 +16,35 @@ exports.getUsuarios = async (req,res)=>{
 exports.postUsuario = async (req, res)=>{
     //#swagger.tags = ['Usuarios']
     //#swagger.summary = 'Criar um novo usuário'
-    try {       
-
+    try {      
         const {nome, email, senha, telefone} = req.body;
 
         const Data = await UsuarioModels.create(
-            nome, email, senha, telefone  
+            {nome, email, senha, telefone  }
         );
 
-        return res.status(200).json({Data})
+        res.status(200).json({Data})
     } catch (error) {
      return res.status(400).json({error: error})  
     }
 }
+
+
+exports.putUsuario = async (req, res)=>{
+    //#swagger.tags = ['Usuarios']
+    //#swagger.summary = 'Alterar um usuário'
+    try {      
+        const {nome, email, senha, telefone} = req.body;
+
+        const Data = await UsuarioModels.update(
+            {nome, email, senha, telefone  },
+            {where: {email : email}}
+        );
+
+        res.status(200).json({Data})
+    } catch (error) {
+     return res.status(400).json({error: error})  
+    }
+}
+
 
