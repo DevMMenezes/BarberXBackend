@@ -6,7 +6,7 @@ const doc = {
     
   },
   host:["200.98.200.58:3005"],
-  schemes: ["https"],
+  schemes: ["https","http"],
   
 };
 

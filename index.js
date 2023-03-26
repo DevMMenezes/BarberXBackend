@@ -14,6 +14,17 @@ app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({extended: false}))
 
+/* Config Cors
+app.use((req, res, next)=>{
+  res.setHeader("Acess-Control-Allow-Origin", "*");
+  res.header(
+    "Acess-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept"
+  );
+  next();
+})
+*/
+
 /* Import Routers */
 const UsuarioRouters = require('./src/routers/UsuarioRouters');
 
