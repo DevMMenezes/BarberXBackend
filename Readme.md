@@ -38,4 +38,4 @@ PM2
 
 Gerar arquivo swagger auto gen
 https://www.npmjs.com/package/swagger-autogen
-- npm run swagger-autogen
+- npm run swagger
