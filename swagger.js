@@ -5,7 +5,7 @@ const doc = {
     title: 'Navalha App API',
     
   },
-  host:["navapp.ddns.net:3005"],
+  host:["navapp.ddns.net"],
   schemes: ["https","http"],
   
 };

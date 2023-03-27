@@ -16,17 +16,6 @@ app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({extended: false}))
 
-/* Config Cors
-app.use((req, res, next)=>{
-  res.setHeader("Acess-Control-Allow-Origin", "*");
-  res.header(
-    "Acess-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept"
-  );
-  next();
-})
-*/
-
 /* Import Routers */
 const UsuarioRouters = require('./src/routers/UsuarioRouters');
 
@@ -38,7 +27,7 @@ app.use("/usuarios", UsuarioRouters);
 const PortNode = INTEGER(process.env.NODE_PORT) | 3005;
 
 /* Start */
-app.listen(PortNode, "", () => {
+app.listen(PortNode, () => {
   return console.log(
       `Listen Server on port: ${PortNode}  - DB Connectado`
   );
