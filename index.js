@@ -2,8 +2,10 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-require("./src/database");
 const { INTEGER } = require("sequelize");
+const https = require("https")
+const fs = require("fs")
+require("./src/database");
 
 /* Swagger Config */
 const swaggerUI = require('swagger-ui-express');
@@ -41,3 +43,11 @@ app.listen(PortNode, "", () => {
       `Listen Server on port: ${PortNode}  - DB Connectado`
   );
 });
+
+/* Config HTTPS */
+
+https.createServer({
+  cert: fs.readFileSync("src/ssl/code.crt"),
+  key: fs.readFileSync("src/ssl/code.key")
+}, app).listen(443, console.log("httpsup"))
+
