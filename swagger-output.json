@@ -6,7 +6,7 @@
     "description": ""
   },
   "host": [
-    "200.98.200.58:3005"
+    "navapp.ddns.net:3005"
   ],
   "basePath": "/",
   "schemes": [
