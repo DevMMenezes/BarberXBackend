@@ -6,7 +6,7 @@
     "description": ""
   },
   "host": [
-    "localhost:3005"
+    "200.98.200.58:3005"
   ],
   "basePath": "/",
   "schemes": [

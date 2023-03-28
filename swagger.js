@@ -4,7 +4,7 @@ const doc = {
   info: {
     title: "Navalha App API",
   },
-  host: ["localhost:3005"],
+  host: ["200.98.200.58:3005"],
   schemes: ["https", "http"],
   consumes: ["application/json"],
   produces: ["application/json"],
