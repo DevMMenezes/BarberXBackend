@@ -3,8 +3,6 @@ const express = require("express");
 const cors = require("cors");
 const app = express();
 const { INTEGER } = require("sequelize");
-const https = require("https")
-const fs = require("fs")
 require("./src/database");
 
 /* Swagger Config */
