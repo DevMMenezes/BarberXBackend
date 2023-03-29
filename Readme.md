@@ -12,7 +12,7 @@ Reverte as ultimas migrates executadas
 - npx sequelize-cli db:migrate:undo
 
 Criar uma Tabela
-- npx sequelize-cli migration:create "nome do arquivo"
+- npx sequelize-cli migration:create  --name nome do arquivo
 
 
 

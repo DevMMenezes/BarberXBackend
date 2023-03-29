@@ -8,15 +8,6 @@ const doc = {
   schemes: ["https", "http"],
   consumes: ["application/json"],
   produces: ["application/json"],
-
-  securityDefinitions: {
-    apiKeyAuth: {
-      type: "apiKey",
-      in: "header",
-      name: "X-API-KEY",
-      description: "Bearer Token",
-    },
-  },
 };
 
 const outputFile = "./swagger-output.json";

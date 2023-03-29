@@ -1,14 +1,31 @@
 const UsuarioModels = require("../models/UsuarioModels");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const BarbeariaModels = require("../models/BarbeariaModels");
 
 exports.getUsuarios = async (req, res) => {
-  /*#swagger.tags = ['Usuarios']
-  #swagger.summary = 'Buscar todos os usuários'
-  #swagger.security = [{
-    "bearerAuth": []}]*/
   try {
-    const Data = await UsuarioModels.findAll();
+    const Data = await UsuarioModels.findAll({
+      attributes: {
+        exclude: ["senha"],
+      },
+      include: {
+        model: BarbeariaModels,
+        as: "usuario_barberias",
+
+        through: {
+          attributes: {
+            exclude: [
+              "id",
+              "id_usuario",
+              "id_barbearia",
+              "createdAt",
+              "updatedAt",
+            ],
+          },
+        },
+      },
+    });
 
     return res.status(200).json({ Data });
   } catch (error) {
@@ -16,17 +33,30 @@ exports.getUsuarios = async (req, res) => {
   }
 };
 exports.getUsuarioPorID = async (req, res) => {
-  /*    #swagger.tags = ['Usuarios']
-        #swagger.path = '/usuarios/{id}'
-        #swagger.summary = 'Buscar usuários por ID'
-        #swagger.parameters['id'] = {
-            in: 'path',
-            type: 'integer',
-            description: 'ID Usuário' } */
   try {
     const { id } = req.params;
 
-    const Data = await UsuarioModels.findByPk(id);
+    const Data = await UsuarioModels.findByPk(id, {
+      attributes: {
+        exclude: ["senha"],
+      },
+      include: {
+        model: BarbeariaModels,
+        as: "usuario_barberias",
+
+        through: {
+          attributes: {
+            exclude: [
+              "id",
+              "id_usuario",
+              "id_barbearia",
+              "createdAt",
+              "updatedAt",
+            ],
+          },
+        },
+      },
+    });
 
     return res.status(200).json({ Data });
   } catch (error) {
@@ -34,8 +64,6 @@ exports.getUsuarioPorID = async (req, res) => {
   }
 };
 exports.postLogin = async (req, res) => {
-  //#swagger.tags = ['Usuarios']
-  //#swagger.summary = 'Criar um Usuário'
   try {
     const { email, senha } = req.body;
 
@@ -69,8 +97,6 @@ exports.postLogin = async (req, res) => {
   }
 };
 exports.postUsuario = async (req, res) => {
-  //#swagger.tags = ['Usuarios']
-  //#swagger.summary = 'Criar um novo usuário'
   try {
     const { nome, email, senha, telefone } = req.body;
 
@@ -103,8 +129,6 @@ exports.postUsuario = async (req, res) => {
   }
 };
 exports.putUsuario = async (req, res) => {
-  //#swagger.tags = ['Usuarios']
-  //#swagger.summary = 'Alterar um usuário'
   try {
     let SenhaBcrypt = "";
     let Data = "";

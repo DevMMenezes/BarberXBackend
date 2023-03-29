@@ -14,11 +14,10 @@
     "http"
   ],
   "securityDefinitions": {
-    "apiKeyAuth": {
-      "type": "apiKey",
-      "in": "header",
-      "name": "X-API-KEY",
-      "description": "Bearer Token"
+    "bearerAuth": {
+      "type": "oauth2",
+      "scheme": "bearer",
+      "bearerFormat": "JWT"
     }
   },
   "consumes": [
@@ -52,12 +51,7 @@
           "403": {
             "description": "Forbidden"
           }
-        },
-        "security": [
-          {
-            "bearerAuth": []
-          }
-        ]
+        }
       },
       "post": {
         "tags": [
