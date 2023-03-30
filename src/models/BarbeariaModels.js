@@ -16,8 +16,23 @@ BarbeariaModels.init({
         allowNull: false,
         field:"nome_barbearia"
       },
-      documento: {
+      endereco_barbearia:{
         type: DataTypes.STRING(100),
+        allowNull: false,
+        field:"endereco_barbearia"
+      },
+      num_barbearia: {
+        type: DataTypes.STRING(30),
+        allowNull: false,
+        field:"num_barbearia"
+      },
+      bairro_barbearia: {
+        type: DataTypes.STRING(30),
+        allowNull: false,
+        field:"bairro_barbearia"
+      },
+      documento: {
+        type: DataTypes.STRING(30),
         allowNull: false,
         field:"documento"
       },

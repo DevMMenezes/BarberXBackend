@@ -8,6 +8,7 @@ require("./src/database");
 /* Swagger Config */
 const swaggerUI = require("swagger-ui-express");
 const swaggerFile = require("./swagger-output.json");
+const JSONInsomnia = require("./Insomnia.json");
 
 /* Config */
 app.use(express.json());
@@ -20,6 +21,9 @@ const BarbeariaRouters = require("./src/routers/BarbeariaRouters");
 
 /* Use Routers */
 //app.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerFile))
+app.use("/docs", (req, res) => {
+  return res.send(JSONInsomnia);
+});
 app.use("/usuarios", UsuarioRouters);
 app.use("/barbearia", BarbeariaRouters);
 

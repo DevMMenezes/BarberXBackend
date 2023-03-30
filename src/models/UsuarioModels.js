@@ -40,6 +40,12 @@ UsuarioModels.init(
       defaultValue: "N",
       field: "bloqueado",
     },
+    funcionario: {
+      type: DataTypes.STRING(1),
+      allowNull: false,
+      defaultValue: "N",
+      field: "funcionario",
+    },
   },
   {
     sequelize: Connection,

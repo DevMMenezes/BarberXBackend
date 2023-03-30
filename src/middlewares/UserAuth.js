@@ -17,6 +17,6 @@ exports.VerifyToken = (req, res, next) => {
       res.status(403).json({ error: "Token não encontrado" });
     }
   } catch (error) {
-    res.sendStatus(403).json({ auth: false, error: error });
+    res.status(403).json({ auth: false, error: error });
   }
 };

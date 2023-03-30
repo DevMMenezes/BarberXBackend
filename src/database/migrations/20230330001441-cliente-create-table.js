@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("usuario", {
+    await queryInterface.createTable("cliente", {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -12,36 +12,19 @@ module.exports = {
         field: "id",
       },
       nome: {
-        type: Sequelize.STRING(100),
+        type: Sequelize.STRING(50),
         allowNull: false,
         field: "nome",
       },
-      email: {
-        type: Sequelize.STRING(100),
-        allowNull: false,
-        field: "email",
-      },
-      senha: {
-        type: Sequelize.STRING(255),
-        allowNull: false,
-        field: "senha",
-      },
       telefone: {
         type: Sequelize.STRING(30),
-        allowNull: true,
+        allowNull: false,
         field: "telefone",
       },
-      bloqueado: {
-        type: Sequelize.STRING(1),
+      data_ult_corte: {
+        type: Sequelize.DATEONLY,
         allowNull: false,
-        defaultValue: "N",
-        field: "bloqueado",
-      },
-      funcionario: {
-        type: Sequelize.STRING(1),
-        allowNull: false,
-        defaultValue: "N",
-        field: "funcionario",
+        field: "data_ult_corte",
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -55,6 +38,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("usuario");
+    await queryInterface.dropTable("cliente");
   },
 };
