@@ -34,6 +34,9 @@ exports.getUsuarios = async (req, res) => {
 };
 exports.getUsuarioPorID = async (req, res) => {
   try {
+    // await UsuarioModels.sync({ alter: true });
+    // await BarbeariaModels.sync({ alter: true });
+
     const { id } = req.params;
 
     const Data = await UsuarioModels.findByPk(id, {

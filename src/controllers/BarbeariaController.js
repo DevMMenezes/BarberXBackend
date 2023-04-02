@@ -12,7 +12,16 @@ exports.getBarbearias = async (req, res) => {
 
 exports.postBarbearia = async (req, res) => {
   try {
-    const { nome_barbearia, documento, telefone_barbearia } = req.body;
+   // await BarbeariaModels.sync({ alter: true });
+    const {
+      nome_barbearia,
+      endereco_barbearia,
+      num_barbearia,
+      documento,
+      bairro_barbearia,
+      telefone_barbearia,
+      cep
+    } = req.body;
 
     if (
       (nome_barbearia, documento, telefone_barbearia) == null ||
@@ -28,6 +37,10 @@ exports.postBarbearia = async (req, res) => {
       nome_barbearia,
       documento,
       telefone_barbearia,
+      endereco_barbearia,
+      num_barbearia,
+      bairro_barbearia,
+      cep
     });
 
     return res.status(200).json({ Data });

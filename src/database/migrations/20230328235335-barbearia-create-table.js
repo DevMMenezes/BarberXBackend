@@ -47,6 +47,11 @@ module.exports = {
         defaultValue: "N",
         field: "ativo",
       },
+      cep: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        field: "cep",
+      },
       createdAt: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.fn("NOW"),
