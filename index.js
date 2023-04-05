@@ -18,6 +18,7 @@ app.use(express.urlencoded({ extended: false }));
 /* Import Routers */
 const UsuarioRouters = require("./src/routers/UsuarioRouters");
 const BarbeariaRouters = require("./src/routers/BarbeariaRouters");
+const ConfigBarbeariaRouters = require("./src/routers/ConfigBarbeariaRouters");
 
 /* Use Routers */
 //app.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerFile))
@@ -26,6 +27,7 @@ app.use("/docs", (req, res) => {
 });
 app.use("/usuarios", UsuarioRouters);
 app.use("/barbearia", BarbeariaRouters);
+app.use("/config", ConfigBarbeariaRouters);
 
 /* Config Port */
 const PortNode = INTEGER(process.env.NODE_PORT) | 3005;
