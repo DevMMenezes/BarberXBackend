@@ -19,6 +19,8 @@ app.use(express.urlencoded({ extended: false }));
 const UsuarioRouters = require("./src/routers/UsuarioRouters");
 const BarbeariaRouters = require("./src/routers/BarbeariaRouters");
 const ConfigBarbeariaRouters = require("./src/routers/ConfigBarbeariaRouters");
+const AgendaRouters = require("./src/routers/AgendaRouters");
+const ProcedimentoRouters = require("./src/routers/ProcedimentoRouters");
 
 /* Use Routers */
 //app.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerFile))
@@ -28,6 +30,8 @@ app.use("/docs", (req, res) => {
 app.use("/usuarios", UsuarioRouters);
 app.use("/barbearia", BarbeariaRouters);
 app.use("/config", ConfigBarbeariaRouters);
+app.use("/agenda", AgendaRouters);
+app.use("/procedimento", ProcedimentoRouters);
 
 /* Config Port */
 const PortNode = INTEGER(process.env.NODE_PORT) | 3005;

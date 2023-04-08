@@ -46,6 +46,12 @@ UsuarioModels.init(
       defaultValue: "N",
       field: "funcionario",
     },
+    demo: {
+      type: DataTypes.STRING(1),
+      allowNull: false,
+      defaultValue: "N",
+      field: "demo",
+    },
   },
   {
     sequelize: Connection,

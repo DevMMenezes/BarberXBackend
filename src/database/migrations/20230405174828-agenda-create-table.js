@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("usuario", {
+    await queryInterface.createTable("agenda", {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -11,43 +11,40 @@ module.exports = {
         allowNull: false,
         field: "id",
       },
-      nome: {
-        type: Sequelize.STRING(100),
+      id_barbearia: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        field: "id_barbearia",
+      },
+      data_agendamento: {
+        type: Sequelize.DATEONLY,
+        allowNull: false,
+        field: "data_agendamento",
+      },
+      total_horas: {
+        type: Sequelize.TIME,
+        allowNull: false,
+        field: "total_horas",
+      },
+      hora_ini: {
+        type: Sequelize.TIME,
+        allowNull: false,
+        field: "hora_ini",
+      },
+      hora_fin: {
+        type: Sequelize.TIME,
+        allowNull: false,
+        field: "hora_fin",
+      },
+      nome_cliente: {
+        type: Sequelize.STRING(50),
         allowNull: false,
         field: "nome",
       },
-      email: {
-        type: Sequelize.STRING(100),
-        allowNull: false,
-        field: "email",
-      },
-      senha: {
-        type: Sequelize.STRING(255),
-        allowNull: false,
-        field: "senha",
-      },
-      telefone: {
+      telefone_cliente: {
         type: Sequelize.STRING(30),
-        allowNull: true,
+        allowNull: false,
         field: "telefone",
-      },
-      bloqueado: {
-        type: Sequelize.STRING(1),
-        allowNull: false,
-        defaultValue: "N",
-        field: "bloqueado",
-      },
-      funcionario: {
-        type: Sequelize.STRING(1),
-        allowNull: false,
-        defaultValue: "N",
-        field: "funcionario",
-      },
-      demo: {
-        type: Sequelize.STRING(1),
-        allowNull: false,
-        defaultValue: "N",
-        field: "demo",
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -61,6 +58,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("usuario");
+    await queryInterface.dropTable("agenda");
   },
 };

@@ -1,6 +1,9 @@
 const { Model, DataTypes } = require("sequelize");
 const Connection = require("../database");
 
+const ProcedimentosModels = require("../models/ProcedimentosModels");
+const ProcedimentosBarbeariaModels = require("../models/ProcedimentosBarbeariaModels");
+
 class BarbeariaModels extends Model {}
 
 BarbeariaModels.init(
@@ -62,5 +65,16 @@ BarbeariaModels.init(
     tableName: "barbearia",
   }
 );
+
+BarbeariaModels.belongsToMany(ProcedimentosModels, {
+  through: ProcedimentosBarbeariaModels,
+  foreignKey: "id_barbearia",
+  as: "barbearia_procedimentos",
+});
+ProcedimentosModels.belongsToMany(BarbeariaModels, {
+  through: ProcedimentosBarbeariaModels,
+  foreignKey: "id_procedimento",
+  as: "procedimentos_barbearia",
+});
 
 module.exports = BarbeariaModels;
