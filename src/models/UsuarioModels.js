@@ -1,4 +1,4 @@
-const { Model, DataTypes } = require("sequelize");
+const { Model, DataTypes, NOW } = require("sequelize");
 const Connection = require("../database");
 const BarbeariaModels = require("../models/BarbeariaModels");
 const UsuarioBarbeariaModels = require("../models/UsuarioBarbeariaModels");
@@ -49,8 +49,14 @@ UsuarioModels.init(
     demo: {
       type: DataTypes.STRING(1),
       allowNull: false,
-      defaultValue: "N",
+      defaultValue: "S",
       field: "demo",
+    },
+    data_cadastro: {
+      type: DataTypes.DATEONLY,
+      allowNull: true,
+      defaultValue: NOW,
+      field: "data_cadastro",
     },
   },
   {

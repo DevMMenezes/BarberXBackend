@@ -101,6 +101,7 @@ exports.postLogin = async (req, res) => {
 };
 exports.postUsuario = async (req, res) => {
   try {
+   // await UsuarioModels.sync({ alter: true });  
     const { nome, email, senha, telefone } = req.body;
 
     if (!(nome, email, senha, telefone)) {

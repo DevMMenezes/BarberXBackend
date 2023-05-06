@@ -46,8 +46,14 @@ module.exports = {
       demo: {
         type: Sequelize.STRING(1),
         allowNull: false,
-        defaultValue: "N",
+        defaultValue: "S",
         field: "demo",
+      },
+      data_cadastro: {
+        type: DataTypes.DATEONLY,
+        allowNull: true,
+        defaultValue: Sequelize.fn("NOW"),
+        field: "data_cadastro",
       },
       createdAt: {
         type: Sequelize.DATE,
