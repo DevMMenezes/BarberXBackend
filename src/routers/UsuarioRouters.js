@@ -4,7 +4,7 @@ const UsuarioController = require("../controllers/UsuarioController");
 const UsuarioBarbeariaController = require("../controllers/UsuarioBarbeariaController");
 const UserAuth = require("../middlewares/UserAuth");
 
-router.get("/", UserAuth.VerifyToken, UsuarioController.getUsuarios);
+router.get("/", UsuarioController.getUsuarios);
 router.get("/id/:id", UsuarioController.getUsuarioPorID);
 router.post("/", UsuarioController.postUsuario);
 router.post("/login", UsuarioController.postLogin);
