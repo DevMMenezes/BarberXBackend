@@ -22,6 +22,7 @@ UsuarioModels.init(
     email: {
       type: DataTypes.STRING(100),
       allowNull: false,
+      unique: true,
       field: "email",
     },
     senha: {
@@ -33,6 +34,21 @@ UsuarioModels.init(
       type: DataTypes.STRING(30),
       allowNull: true,
       field: "telefone",
+    },
+    tipo: {
+      type: DataTypes.STRING(30),
+      allowNull: false,
+      field: "tipo",
+    },
+    cidade:{
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      field: "cidade",
+    },
+    estado:{
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      field: "estado",
     },
     bloqueado: {
       type: DataTypes.STRING(1),

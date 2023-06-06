@@ -101,10 +101,10 @@ exports.postLogin = async (req, res) => {
 };
 exports.postUsuario = async (req, res) => {
   try {
-   // await UsuarioModels.sync({ alter: true });  
-    const { nome, email, senha, telefone } = req.body;
+   // await UsuarioModels.sync({ alter: true });
+    const { nome, email, senha, telefone, tipo, cidade, estado } = req.body;
 
-    if (!(nome, email, senha, telefone)) {
+    if (!(nome, email, senha, telefone, tipo, cidade, estado)) {
       return res
         .status(400)
         .json({ error: "Dados obrigatórios não informados" });
@@ -125,6 +125,9 @@ exports.postUsuario = async (req, res) => {
       email,
       senha: SenhaBcrypt,
       telefone,
+      tipo,
+      cidade,
+      estado,
     });
 
     return res.status(200).json({ Data });

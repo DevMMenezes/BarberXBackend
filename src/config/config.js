@@ -1,6 +1,17 @@
 require("dotenv").config();
 
 module.exports = {
+  localdevelopment: {
+    dialect: 'mysql',
+    host: "localhost",
+    username: "dev",
+    password: "navapp!@#",
+    database: "navapp",
+    define: {
+      timestamp: true,
+      underscored: true,
+    },
+  },
   development: {
     dialect: 'mysql',
     host: "200.98.200.58",

@@ -19,6 +19,7 @@ module.exports = {
       email: {
         type: Sequelize.STRING(100),
         allowNull: false,
+        unique: true,
         field: "email",
       },
       senha: {
@@ -30,6 +31,22 @@ module.exports = {
         type: Sequelize.STRING(30),
         allowNull: true,
         field: "telefone",
+      },
+
+      tipo: {
+        type: Sequelize.STRING(30),
+        allowNull: false,
+        field: "tipo",
+      },
+      cidade: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        field: "cidade",
+      },
+      estado: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        field: "estado",
       },
       bloqueado: {
         type: Sequelize.STRING(1),
@@ -50,9 +67,8 @@ module.exports = {
         field: "demo",
       },
       data_cadastro: {
-        type: DataTypes.DATEONLY,
+        type: Sequelize.DATEONLY,
         allowNull: true,
-        defaultValue: Sequelize.fn("NOW"),
         field: "data_cadastro",
       },
       createdAt: {
