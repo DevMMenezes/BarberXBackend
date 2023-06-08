@@ -40,9 +40,9 @@ exports.getUsuarioPorID = async (req, res) => {
     const { id } = req.params;
 
     const Data = await UsuarioModels.findByPk(id, {
-      attributes: {
-        exclude: ["senha"],
-      },
+      // attributes: {
+      //   exclude: ["senha"],
+      // },
       include: {
         model: BarbeariaModels,
         as: "usuario_barberias",
@@ -64,6 +64,25 @@ exports.getUsuarioPorID = async (req, res) => {
     return res.status(200).json({ Data });
   } catch (error) {
     return res.status(400).json({ error: error });
+  }
+};
+exports.getVerificaSenha = async (req, res) => {
+  try {
+    const { id, senhaStore } = req.body;
+
+    if (!(id, senhaStore)) {
+      return res.status(400).json({ error: "Usuário ou Senha não informados" });
+    }
+
+    const Data = await UsuarioModels.findByPk(id);
+
+    if (senhaStore === Data.senha ) {
+      return res.status(200).json({ login: true });
+    } else {
+      return res.status(403).json({ login: false });
+    }
+  } catch (error) {
+    return res.status(400).json({ error: error, error2: error.message });
   }
 };
 exports.postLogin = async (req, res) => {
@@ -101,7 +120,7 @@ exports.postLogin = async (req, res) => {
 };
 exports.postUsuario = async (req, res) => {
   try {
-   // await UsuarioModels.sync({ alter: true });
+    // await UsuarioModels.sync({ alter: true });
     const { nome, email, senha, telefone, tipo, cidade, estado } = req.body;
 
     if (!(nome, email, senha, telefone, tipo, cidade, estado)) {
