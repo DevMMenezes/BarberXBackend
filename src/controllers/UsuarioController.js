@@ -66,9 +66,9 @@ exports.getUsuarioPorID = async (req, res) => {
     return res.status(400).json({ error: error });
   }
 };
-exports.getVerificaSenha = async (req, res) => {
+exports.postVerificaSenha = async (req, res) => {
   try {
-    const { id, senhaStore } = req.body;
+    const { id, senhaStore } = req.params;
 
     if (!(id, senhaStore)) {
       return res.status(400).json({ error: "Usuário ou Senha não informados" });

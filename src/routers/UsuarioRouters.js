@@ -5,7 +5,7 @@ const UsuarioBarbeariaController = require("../controllers/UsuarioBarbeariaContr
 const UserAuth = require("../middlewares/UserAuth");
 
 router.get("/", UsuarioController.getUsuarios);
-router.get("/verifica", UsuarioController.getVerificaSenha);
+router.get("/verifica/:id/:senhaStore", UsuarioController.postVerificaSenha);
 router.get("/id/:id", UsuarioController.getUsuarioPorID);
 router.post("/", UsuarioController.postUsuario);
 router.post("/login", UsuarioController.postLogin);
