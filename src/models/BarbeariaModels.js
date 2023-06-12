@@ -63,6 +63,7 @@ BarbeariaModels.init(
     updatedAt: true,
     underscored: false,
     tableName: "barbearia",
+
   }
 );
 

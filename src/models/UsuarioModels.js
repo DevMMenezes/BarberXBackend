@@ -2,6 +2,7 @@ const { Model, DataTypes, NOW } = require("sequelize");
 const Connection = require("../database");
 const BarbeariaModels = require("../models/BarbeariaModels");
 const UsuarioBarbeariaModels = require("../models/UsuarioBarbeariaModels");
+const UsuarioBarberiaFavorModels = require("../models/UsuarioBarbeariaFavoritaModels");
 
 class UsuarioModels extends Model {}
 
@@ -40,12 +41,12 @@ UsuarioModels.init(
       allowNull: false,
       field: "tipo",
     },
-    cidade:{
+    cidade: {
       type: DataTypes.INTEGER,
       allowNull: false,
       field: "cidade",
     },
-    estado:{
+    estado: {
       type: DataTypes.INTEGER,
       allowNull: false,
       field: "estado",
@@ -94,6 +95,18 @@ BarbeariaModels.belongsToMany(UsuarioModels, {
   through: UsuarioBarbeariaModels,
   foreignKey: "id_barbearia",
   as: "barbearia_usuario",
+});
+
+UsuarioModels.belongsToMany(BarbeariaModels,{
+  through: UsuarioBarberiaFavorModels,
+  foreignKey: "id_usuario",
+  as: "usuario_barber_favor",
+})
+
+BarbeariaModels.belongsToMany(UsuarioModels, {
+  through: UsuarioBarberiaFavorModels,
+  foreignKey: "id_barbearia",
+  as: "barber_usuario_favor",
 });
 
 module.exports = UsuarioModels;

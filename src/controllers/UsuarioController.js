@@ -34,31 +34,45 @@ exports.getUsuarios = async (req, res) => {
 };
 exports.getUsuarioPorID = async (req, res) => {
   try {
-    // await UsuarioModels.sync({ alter: true });
-    // await BarbeariaModels.sync({ alter: true });
-
     const { id } = req.params;
-
     const Data = await UsuarioModels.findByPk(id, {
       // attributes: {
       //   exclude: ["senha"],
       // },
-      include: {
-        model: BarbeariaModels,
-        as: "usuario_barberias",
+      include: [
+        {
+          model: BarbeariaModels,
+          as: "usuario_barberias",
 
-        through: {
-          attributes: {
-            exclude: [
-              "id",
-              "id_usuario",
-              "id_barbearia",
-              "createdAt",
-              "updatedAt",
-            ],
+          through: {
+            attributes: {
+              exclude: [
+                "id",
+                "id_usuario",
+                "id_barbearia",
+                "createdAt",
+                "updatedAt",
+              ],
+            },
           },
         },
-      },
+
+        {
+          model: BarbeariaModels,
+          as: "usuario_barber_favor",
+          through: {
+            attributes: {
+              exclude: [
+                "id",
+                "id_usuario",
+                "id_barbearia",
+                "createdAt",
+                "updatedAt",
+              ],
+            },
+          },
+        },
+      ],
     });
 
     return res.status(200).json({ Data });
@@ -74,10 +88,45 @@ exports.postVerificaSenha = async (req, res) => {
       return res.status(400).json({ error: "Usuário ou Senha não informados" });
     }
 
-    const Data = await UsuarioModels.findByPk(id);
+    const Data = await UsuarioModels.findByPk(id, {
+      include: [
+        {
+          model: BarbeariaModels,
+          as: "usuario_barberias",
 
-    if (senhaStore === Data.senha ) {
-      return res.status(200).json({ login: true });
+          through: {
+            attributes: {
+              exclude: [
+                "id",
+                "id_usuario",
+                "id_barbearia",
+                "createdAt",
+                "updatedAt",
+              ],
+            },
+          },
+        },
+
+        {
+          model: BarbeariaModels,
+          as: "usuario_barber_favor",
+          through: {
+            attributes: {
+              exclude: [
+                "id",
+                "id_usuario",
+                "id_barbearia",
+                "createdAt",
+                "updatedAt",
+              ],
+            },
+          }
+        },
+      ],
+    });
+
+    if (senhaStore === Data.senha) {
+      return res.status(200).json({ login: true, Data: Data });
     } else {
       return res.status(403).json({ login: false });
     }

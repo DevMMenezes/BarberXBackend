@@ -1,11 +1,32 @@
+const { where } = require("sequelize");
 const BarbeariaModels = require("../models/BarbeariaModels");
 const ProcedimentosModels = require("../models/ProcedimentosModels");
+const UsuarioBarbeariaFavoritaModels = require("../models/UsuarioBarbeariaFavoritaModels");
 
 exports.getBarbearias = async (req, res) => {
-  try {
-    const Data = await BarbeariaModels.findAll();
+  const { id_usuario } = req.params;
 
-    return res.status(200).json({ Data });
+  if (!id_usuario) {
+    return res.status(400).json({ error: "ID do usuário não encontrado" });
+  }
+
+  try {
+    const DataFavor = await UsuarioBarbeariaFavoritaModels.findAll({
+      where: { id_usuario: id_usuario },
+    });
+
+    const Data = await BarbeariaModels.findAll();
+    console.log(typeof Data);
+
+    for (x in Data) {
+      for (y in DataFavor) {
+        if (Data[x].id === DataFavor[y].id) {
+          Data[x].dataValues["favorito"] = DataFavor[y].favorito;
+        }
+      }
+    }
+
+    return res.status(200).json({ Data: Data });
   } catch (error) {
     return res.status(400).json({ error: error.message, error: error });
   }
