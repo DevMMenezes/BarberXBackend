@@ -42,6 +42,11 @@ ConfigBarbeariaModels.init(
       allowNull: false,
       field: "tolerancia",
     },
+    tempo_montagem_grid: {
+      type: DataTypes.TIME,
+      allowNull: false,
+      field: "tempo_montagem_grid",
+    },
   },
   {
     sequelize: Connection,

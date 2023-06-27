@@ -1,13 +1,23 @@
 const { where } = require("sequelize");
 const BarbeariaModels = require("../models/BarbeariaModels");
+const SecaoModels = require("../models/SecaoModels");
 const ProcedimentosModels = require("../models/ProcedimentosModels");
 const UsuarioBarbeariaFavoritaModels = require("../models/UsuarioBarbeariaFavoritaModels");
+const ConfigBarbeariaModels = require("../models/ConfigBarbeariaModels");
+const {
+  ValidarHorario,
+  SomarHoras,
+  SubtrairHoras,
+} = require("../utils/ValidarHorario");
 
 exports.getBarbearias = async (req, res) => {
-  const { id_usuario } = req.params;
+  const { id_usuario, cidade } = req.params;
 
   if (!id_usuario) {
     return res.status(400).json({ error: "ID do usuário não encontrado" });
+  }
+  if (!cidade) {
+    return res.status(400).json({ error: "ID da cidade não encontrado" });
   }
 
   try {
@@ -15,12 +25,12 @@ exports.getBarbearias = async (req, res) => {
       where: { id_usuario: id_usuario },
     });
 
-    const Data = await BarbeariaModels.findAll();
-    console.log(typeof Data);
+    // await BarbeariaModels.sync({ alter: true });
+    const Data = await BarbeariaModels.findAll({ where: { cidade: cidade } });
 
     for (x in Data) {
       for (y in DataFavor) {
-        if (Data[x].id === DataFavor[y].id) {
+        if (Data[x].id === DataFavor[y].id_barbearia) {
           Data[x].dataValues["favorito"] = DataFavor[y].favorito;
         }
       }
@@ -36,30 +46,29 @@ exports.getBarbeariasPorID = async (req, res) => {
   try {
     const { id } = req.params;
 
-    const Data = await BarbeariaModels.findByPk(id, {
-      include: {
-        model: ProcedimentosModels,
-        as: "barbearia_procedimentos",
-        attributes: {
-          exclude: ["createdAt", "updatedAt"],
+    // await ProcedimentosModels.sync({ alter: true });
+    const DataProcedimentos = await SecaoModels.findAll({
+      include: [
+        {
+          model: ProcedimentosModels,
         },
-        through: {
-          attributes: {
-            exclude: [
-              "id",
-              "id_procedimento",
-              "id_barbearia",
-              "createdAt",
-              "updatedAt",
-            ],
-          },
-        },
-      },
+      ],
+      where: { id_barbearia: id },
     });
 
-    return res.status(200).json({ Data });
+    const DataConfigBarbearia = await ConfigBarbeariaModels.findOne({
+      where: { id_barbearia: id },
+    });
+
+    const Data = await BarbeariaModels.findByPk(id);
+
+    return res.status(200).json({
+      Data,
+      DataProcedimentos,
+      DataConfigBarbearia,
+    });
   } catch (error) {
-    return res.status(400).json({ error: error.message, error: error });
+    return res.status(400).json({ error: error.message });
   }
 };
 

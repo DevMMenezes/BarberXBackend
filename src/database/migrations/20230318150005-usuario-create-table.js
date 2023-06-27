@@ -71,6 +71,11 @@ module.exports = {
         allowNull: true,
         field: "data_cadastro",
       },
+      img_perfil: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        field: "img_perfil",
+      },
       createdAt: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.fn("NOW"),

@@ -3,7 +3,7 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("procedimentos", {
+    await queryInterface.createTable("secao", {
       id: {
         type: Sequelize.INTEGER,
         primaryKey: true,
@@ -11,30 +11,15 @@ module.exports = {
         allowNull: false,
         field: "id",
       },
+      nome_secao: {
+        type: Sequelize.STRING(50),
+        allowNull: false,
+        field: "nome_secao",
+      },
       id_barbearia: {
         type: Sequelize.INTEGER,
         allowNull: false,
         field: "id_barbearia",
-      },
-      id_secao: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        field: "id_secao",
-      },
-      nome_procedimentos: {
-        type: Sequelize.STRING(100),
-        allowNull: false,
-        field: "nome_procedimentos",
-      },
-      preco_procedimento: {
-        type: Sequelize.FLOAT,
-        allowNull: false,
-        field: "preco_procedimento",
-      },
-      tempo_procedimento: {
-        type: Sequelize.TIME,
-        allowNull: false,
-        field: "tempo_procedimento",
       },
       createdAt: {
         type: Sequelize.DATE,
@@ -48,6 +33,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable("procedimentos");
+    await queryInterface.dropTable("secao");
   },
 };

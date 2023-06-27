@@ -22,20 +22,10 @@ AgendaModels.init(
       allowNull: false,
       field: "data_agendamento",
     },
-    total_horas: {
+    hora_agendada: {
       type: DataTypes.TIME,
       allowNull: false,
-      field: "total_horas",
-    },
-    hora_ini: {
-      type: DataTypes.TIME,
-      allowNull: false,
-      field: "hora_ini",
-    },
-    hora_fin: {
-      type: DataTypes.TIME,
-      allowNull: false,
-      field: "hora_fin",
+      field: "hora_agendada",
     },
     nome_cliente: {
       type: DataTypes.STRING(50),

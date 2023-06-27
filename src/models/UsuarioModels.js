@@ -75,6 +75,11 @@ UsuarioModels.init(
       defaultValue: NOW,
       field: "data_cadastro",
     },
+    img_perfil: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      field: "img_perfil",
+    },
   },
   {
     sequelize: Connection,

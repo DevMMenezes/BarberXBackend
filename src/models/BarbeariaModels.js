@@ -1,7 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
 const Connection = require("../database");
-
-const ProcedimentosModels = require("../models/ProcedimentosModels");
+const SecaoModels = require("../models/SecaoModels");
 const ProcedimentosBarbeariaModels = require("../models/ProcedimentosBarbeariaModels");
 
 class BarbeariaModels extends Model {}
@@ -56,6 +55,21 @@ BarbeariaModels.init(
       allowNull: false,
       field: "cep",
     },
+    cidade: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      field: "cidade",
+    },
+    estado: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      field: "estado",
+    },
+    img_perfil_barbearia: {
+      type: DataTypes.STRING,
+      allowNull: true,
+      field: "img_perfil_barbearia",
+    },
   },
   {
     sequelize: Connection,
@@ -63,19 +77,18 @@ BarbeariaModels.init(
     updatedAt: true,
     underscored: false,
     tableName: "barbearia",
-
   }
 );
 
-BarbeariaModels.belongsToMany(ProcedimentosModels, {
+BarbeariaModels.belongsToMany(SecaoModels, {
   through: ProcedimentosBarbeariaModels,
   foreignKey: "id_barbearia",
-  as: "barbearia_procedimentos",
+  as: "secao_proceds_barbearia",
 });
-ProcedimentosModels.belongsToMany(BarbeariaModels, {
+SecaoModels.belongsToMany(BarbeariaModels, {
   through: ProcedimentosBarbeariaModels,
-  foreignKey: "id_procedimento",
-  as: "procedimentos_barbearia",
+  foreignKey: "id_secao",
+  as: "proceds_secao_barbearia",
 });
 
 module.exports = BarbeariaModels;

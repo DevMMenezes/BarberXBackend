@@ -21,6 +21,8 @@ const BarbeariaRouters = require("./src/routers/BarbeariaRouters");
 const ConfigBarbeariaRouters = require("./src/routers/ConfigBarbeariaRouters");
 const AgendaRouters = require("./src/routers/AgendaRouters");
 const ProcedimentoRouters = require("./src/routers/ProcedimentoRouters");
+const uploadIMGRouters = require("./src/routers/uploadIMGRouters");
+const SecaoRouters = require("./src/routers/SecaoRouters");
 
 /* Use Routers */
 //app.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerFile))
@@ -32,6 +34,10 @@ app.use("/barbearia", BarbeariaRouters);
 app.use("/config", ConfigBarbeariaRouters);
 app.use("/agenda", AgendaRouters);
 app.use("/procedimento", ProcedimentoRouters);
+app.use("/img", uploadIMGRouters);
+app.use("/imgperfil", express.static("public/usuarios"));
+app.use("/imgperfilbarber", express.static("public/barbearias"));
+app.use("/secao", SecaoRouters);
 
 /* Config Port */
 const PortNode = INTEGER(process.env.NODE_PORT) | 3005;

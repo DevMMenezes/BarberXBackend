@@ -12,6 +12,16 @@ ProcedimentosModels.init(
       allowNull: false,
       field: "id",
     },
+    id_secao: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      field: "id_secao",
+    },
+    id_barbearia: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      field: "id_barbearia",
+    },
     nome_procedimentos: {
       type: DataTypes.STRING(100),
       allowNull: false,
@@ -36,5 +46,7 @@ ProcedimentosModels.init(
     tableName: "procedimentos",
   }
 );
+
+
 
 module.exports = ProcedimentosModels;

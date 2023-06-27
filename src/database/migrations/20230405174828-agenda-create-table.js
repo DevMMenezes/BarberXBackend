@@ -21,20 +21,10 @@ module.exports = {
         allowNull: false,
         field: "data_agendamento",
       },
-      total_horas: {
+      hora_agendada: {
         type: Sequelize.TIME,
         allowNull: false,
-        field: "total_horas",
-      },
-      hora_ini: {
-        type: Sequelize.TIME,
-        allowNull: false,
-        field: "hora_ini",
-      },
-      hora_fin: {
-        type: Sequelize.TIME,
-        allowNull: false,
-        field: "hora_fin",
+        field: "hora_agendada",
       },
       nome_cliente: {
         type: Sequelize.STRING(50),

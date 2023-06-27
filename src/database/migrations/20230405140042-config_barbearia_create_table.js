@@ -41,6 +41,11 @@ module.exports = {
         allowNull: false,
         field: "tolerancia",
       },
+      tempo_montagem_grid: {
+        type: Sequelize.TIME,
+        allowNull: false,
+        field: "tempo_montagem_grid",
+      },
       createdAt: {
         type: Sequelize.DATE,
         defaultValue: Sequelize.fn("NOW"),

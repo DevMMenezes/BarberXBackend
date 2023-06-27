@@ -16,20 +16,20 @@ module.exports = {
         allowNull: false,
         field: "nome_barbearia",
       },
-      endereco_barbearia:{
+      endereco_barbearia: {
         type: Sequelize.STRING(100),
         allowNull: false,
-        field:"endereco_barbearia"
+        field: "endereco_barbearia",
       },
       num_barbearia: {
         type: Sequelize.STRING(30),
         allowNull: false,
-        field:"num_barbearia"
+        field: "num_barbearia",
       },
       bairro_barbearia: {
         type: Sequelize.STRING(30),
         allowNull: false,
-        field:"bairro_barbearia"
+        field: "bairro_barbearia",
       },
       documento: {
         type: Sequelize.STRING(30),
@@ -51,6 +51,21 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         field: "cep",
+      },
+      cidade: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        field: "cidade",
+      },
+      estado: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        field: "estado",
+      },
+      img_perfil_barbearia: {
+        type: Sequelize.STRING,
+        allowNull: true,
+        field: "img_perfil_barbearia",
       },
       createdAt: {
         type: Sequelize.DATE,

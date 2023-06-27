@@ -1,9 +1,10 @@
 const { Model, DataTypes } = require("sequelize");
 const Connection = require("../database");
+const ProcedimentosModels = require("../models/ProcedimentosModels");
 
-class ProcedimentosBarbeariaModels extends Model {}
+class SecaoModels extends Model {}
 
-ProcedimentosBarbeariaModels.init(
+SecaoModels.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -12,20 +13,15 @@ ProcedimentosBarbeariaModels.init(
       allowNull: false,
       field: "id",
     },
-    id_procedimento: {
-      type: DataTypes.INTEGER,
+    nome_secao: {
+      type: DataTypes.STRING(50),
       allowNull: false,
-      field: "id_procedimento",
+      field: "nome_secao",
     },
     id_barbearia: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      field: "id_barbearia",
-    },
-    id_secao: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      field: "id_secao",
+      field: "id_barbeiro",
     },
   },
   {
@@ -33,9 +29,15 @@ ProcedimentosBarbeariaModels.init(
     createdAt: true,
     updatedAt: true,
     underscored: false,
-    tableName: "procedimentos_barbearia",
+    tableName: "secao",
   }
 );
 
+SecaoModels.hasMany(ProcedimentosModels, {
+  foreignKey: "id_secao",
+});
+ProcedimentosModels.belongsTo(SecaoModels, {
+  foreignKey: "id_procedimento",
+});
 
-module.exports = ProcedimentosBarbeariaModels;
+module.exports = SecaoModels;

@@ -65,6 +65,7 @@ exports.putConfigBarbeariaModels = async (req, res) => {
       horario_pausa_ini,
       horario_pausa_fin,
       tolerancia,
+      tempo_montagem_grid
     } = req.body;
 
     if (
@@ -73,7 +74,8 @@ exports.putConfigBarbeariaModels = async (req, res) => {
       horario_fechamento,
       horario_pausa_ini,
       horario_pausa_fin,
-      tolerancia) == null ||
+      tolerancia,
+      tempo_montagem_grid) == null ||
       undefined ||
       ""
     ) {
@@ -90,6 +92,7 @@ exports.putConfigBarbeariaModels = async (req, res) => {
         horario_pausa_ini,
         horario_pausa_fin,
         tolerancia,
+        tempo_montagem_grid
       },
       { where: { id_barbearia: id_barbearia } }
     );

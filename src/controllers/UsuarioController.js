@@ -120,7 +120,7 @@ exports.postVerificaSenha = async (req, res) => {
                 "updatedAt",
               ],
             },
-          }
+          },
         },
       ],
     });
@@ -209,11 +209,52 @@ exports.putUsuario = async (req, res) => {
     let Data = "";
     const ValidaSenha = undefined || "" || null;
 
-    const { nome, email, senha, telefone } = req.body;
+    const { id, nome, email, senha, telefone, tipo, cidade, estado } = req.body;
 
     if (!email) {
       return res.status(400).json({ error: "Usuário não informados" });
     }
+
+    if (!id) {
+      return res.status(400).json({ error: "ID Usuário não informados" });
+    }
+
+    const ValidaEmail = await UsuarioModels.findByPk(id, {
+      include: [
+        {
+          model: BarbeariaModels,
+          as: "usuario_barberias",
+
+          through: {
+            attributes: {
+              exclude: [
+                "id",
+                "id_usuario",
+                "id_barbearia",
+                "createdAt",
+                "updatedAt",
+              ],
+            },
+          },
+        },
+
+        {
+          model: BarbeariaModels,
+          as: "usuario_barber_favor",
+          through: {
+            attributes: {
+              exclude: [
+                "id",
+                "id_usuario",
+                "id_barbearia",
+                "createdAt",
+                "updatedAt",
+              ],
+            },
+          },
+        },
+      ],
+    });
 
     if (senha != ValidaSenha) {
       SenhaBcrypt = await bcrypt.hash(senha, 10);
@@ -226,8 +267,11 @@ exports.putUsuario = async (req, res) => {
           email,
           senha: SenhaBcrypt,
           telefone,
+          tipo,
+          cidade,
+          estado,
         },
-        { where: { email: email } }
+        { where: { id: id } }
       );
     } else {
       Data = await UsuarioModels.update(
@@ -235,11 +279,20 @@ exports.putUsuario = async (req, res) => {
           nome,
           email,
           telefone,
+          tipo,
+          cidade,
+          estado,
         },
-        { where: { email: email } }
+        { where: { id: id } }
       );
     }
-    return res.status(200).json({ Data: "Alterado com sucesso" });
+
+    if (ValidaEmail.dataValues.id > 0) {
+      const Data = ValidaEmail;
+      return res.status(200).json({ Data: Data });
+    } else {
+      return res.status(200).json({ Data: "Email não encontrado" });
+    }
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }

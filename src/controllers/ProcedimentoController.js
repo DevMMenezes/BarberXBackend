@@ -3,17 +3,19 @@ const ProcedimentosModels = require("../models/ProcedimentosModels");
 
 exports.postProcedimentoBarbearia = async (req, res) => {
   try {
-    const { id_procedimento, id_barbearia } = req.body;
+    const { id_procedimento, id_barbearia, id_secao } = req.body;
 
-    if ((id_procedimento, id_barbearia) == null || undefined || "") {
+    if ((id_procedimento, id_barbearia, id_secao) == null || undefined || "") {
       return res
         .status(400)
         .json({ error: "Dados necessários não informados" });
     }
 
+    // await ProcedimentosBarbeariaModels.sync({ alter: true });
     const Data = await ProcedimentosBarbeariaModels.create({
       id_procedimento,
       id_barbearia,
+      id_secao,
     });
 
     return res.status(200).json({ Data });
@@ -24,11 +26,17 @@ exports.postProcedimentoBarbearia = async (req, res) => {
 
 exports.postProcedimento = async (req, res) => {
   try {
-    const { nome_procedimentos, preco_procedimento, tempo_procedimento } =
-      req.body;
+    const {
+      id_secao,
+      id_barbearia,
+      nome_procedimentos,
+      preco_procedimento,
+      tempo_procedimento,
+    } = req.body;
 
     if (
-      (nome_procedimentos, preco_procedimento, tempo_procedimento) == null ||
+      (id_secao,id_barbearia, nome_procedimentos, preco_procedimento, tempo_procedimento) ==
+        null ||
       undefined ||
       ""
     ) {
@@ -36,11 +44,14 @@ exports.postProcedimento = async (req, res) => {
         .status(400)
         .json({ error: "Dados necessários não informados" });
     }
+    // await ProcedimentosModels.sync({ alter: true });
 
     const Data = await ProcedimentosModels.create({
       nome_procedimentos,
       preco_procedimento,
       tempo_procedimento,
+      id_secao,
+      id_barbearia
     });
 
     return res.status(200).json({ Data });
