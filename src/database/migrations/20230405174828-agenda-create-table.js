@@ -16,6 +16,11 @@ module.exports = {
         allowNull: false,
         field: "id_barbearia",
       },
+      id_usuario: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        field: "id_usuario",
+      },
       data_agendamento: {
         type: Sequelize.DATEONLY,
         allowNull: false,

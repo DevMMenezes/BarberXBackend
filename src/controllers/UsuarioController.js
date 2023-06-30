@@ -40,6 +40,7 @@ exports.getUsuarioPorID = async (req, res) => {
       //   exclude: ["senha"],
       // },
       include: [
+
         {
           model: BarbeariaModels,
           as: "usuario_barberias",

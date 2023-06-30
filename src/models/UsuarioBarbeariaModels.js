@@ -32,4 +32,5 @@ UsuarioBarbeariaModels.init(
   }
 );
 
+
 module.exports = UsuarioBarbeariaModels;

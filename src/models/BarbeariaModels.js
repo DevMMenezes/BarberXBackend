@@ -2,6 +2,8 @@ const { Model, DataTypes } = require("sequelize");
 const Connection = require("../database");
 const SecaoModels = require("../models/SecaoModels");
 const ProcedimentosBarbeariaModels = require("../models/ProcedimentosBarbeariaModels");
+const UsuarioBarbeariaModels = require("../models/UsuarioBarbeariaModels");
+const UsuarioModels = require("../models/UsuarioModels");
 
 class BarbeariaModels extends Model {}
 
@@ -90,5 +92,17 @@ SecaoModels.belongsToMany(BarbeariaModels, {
   foreignKey: "id_secao",
   as: "proceds_secao_barbearia",
 });
+
+// BarbeariaModels.belongsToMany(UsuarioModels, {
+//   through: UsuarioBarbeariaModels,
+//   foreignKey: "id_barbearia",
+//   as: "barbearia_usuarios",
+// });
+
+// UsuarioModels.belongsToMany(BarbeariaModels, {
+//   through: UsuarioBarbeariaModels,
+//   foreignKey: "id_usuario",
+//   as: "usuarios_barber1",
+// });
 
 module.exports = BarbeariaModels;

@@ -31,6 +31,9 @@ Mysql on linux (ubuntu)
   FLUSH PRIVILEGES;
 - exit
 
+GRANT ALL PRIVILEGES ON *.* TO 'dev'@'%' IDENTIFIED BY "navapp!@#";
+FLUSH PRIVILEGES;
+
 PM2 -https://pm2.io/docs/runtime/guide/installation/
 
 Gerar arquivo swagger auto gen

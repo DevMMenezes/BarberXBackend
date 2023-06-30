@@ -23,6 +23,7 @@ exports.postConfigBarbeariaModels = async (req, res) => {
       horario_pausa_ini,
       horario_pausa_fin,
       tolerancia,
+      tempo_montagem_grid,
     } = req.body;
 
     if (
@@ -31,7 +32,8 @@ exports.postConfigBarbeariaModels = async (req, res) => {
       horario_fechamento,
       horario_pausa_ini,
       horario_pausa_fin,
-      tolerancia) == null ||
+      tolerancia,
+      tempo_montagem_grid) == null ||
       undefined ||
       ""
     ) {
@@ -47,6 +49,7 @@ exports.postConfigBarbeariaModels = async (req, res) => {
       horario_pausa_ini,
       horario_pausa_fin,
       tolerancia,
+      tempo_montagem_grid,
     });
 
     return res.status(200).json({ Data });
@@ -65,7 +68,7 @@ exports.putConfigBarbeariaModels = async (req, res) => {
       horario_pausa_ini,
       horario_pausa_fin,
       tolerancia,
-      tempo_montagem_grid
+      tempo_montagem_grid,
     } = req.body;
 
     if (
@@ -92,13 +95,13 @@ exports.putConfigBarbeariaModels = async (req, res) => {
         horario_pausa_ini,
         horario_pausa_fin,
         tolerancia,
-        tempo_montagem_grid
+        tempo_montagem_grid,
       },
       { where: { id_barbearia: id_barbearia } }
     );
 
     return res.status(200).json({ Data: "Config alterada com sucesso" });
   } catch (error) {
-    return res.status(400).json({ error: error.message, error: error });
+    return res.status(400).json({ error: error.message });
   }
 };

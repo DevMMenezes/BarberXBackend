@@ -17,6 +17,11 @@ AgendaModels.init(
       allowNull: false,
       field: "id_barbearia",
     },
+    id_usuario: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      field: "id_usuario",
+    },
     data_agendamento: {
       type: DataTypes.DATEONLY,
       allowNull: false,

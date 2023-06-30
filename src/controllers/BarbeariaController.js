@@ -1,6 +1,7 @@
 const { where } = require("sequelize");
 const BarbeariaModels = require("../models/BarbeariaModels");
 const SecaoModels = require("../models/SecaoModels");
+const UsuarioModels = require("../models/UsuarioModels");
 const ProcedimentosModels = require("../models/ProcedimentosModels");
 const UsuarioBarbeariaFavoritaModels = require("../models/UsuarioBarbeariaFavoritaModels");
 const ConfigBarbeariaModels = require("../models/ConfigBarbeariaModels");
@@ -60,7 +61,9 @@ exports.getBarbeariasPorID = async (req, res) => {
       where: { id_barbearia: id },
     });
 
-    const Data = await BarbeariaModels.findByPk(id);
+    const Data = await BarbeariaModels.findByPk(id, {
+      include: { model: UsuarioModels, as: "barbearia_usuario" },
+    });
 
     return res.status(200).json({
       Data,
