@@ -14,10 +14,10 @@ module.exports = {
   },
   development: {
     dialect: "mysql",
-    host: "200.98.200.58",
-    username: "dev",
-    password: "navapp!@#",
-    database: "navapp",
+    host: "localhost",
+    username: "root",
+    password: "root",
+    database: "barberx",
     define: {
       timestamp: true,
       underscored: true,

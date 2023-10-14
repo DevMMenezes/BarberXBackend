@@ -15,7 +15,7 @@ exports.getConfigBarbeariaModels = async (req, res) => {
 
 exports.postConfigBarbeariaModels = async (req, res) => {
   try {
-    // await ConfigBarbeariaModels.sync({ alter: true });
+     await ConfigBarbeariaModels.sync({ alter: true });
     const {
       id_barbearia,
       horario_abertura,

@@ -48,6 +48,10 @@ exports.getBarbeariasPorID = async (req, res) => {
     const { id } = req.params;
 
     // await ProcedimentosModels.sync({ alter: true });
+    // await BarbeariaModels.sync({ alter: true });
+    //await SecaoModels.sync({ alter: true });
+
+
     const DataProcedimentos = await SecaoModels.findAll({
       include: [
         {
@@ -86,6 +90,11 @@ exports.postBarbearia = async (req, res) => {
       bairro_barbearia,
       telefone_barbearia,
       cep,
+      cidade,
+      estado,
+      ativo,
+      img_perfil_barbearia
+
     } = req.body;
 
     if (
@@ -106,6 +115,10 @@ exports.postBarbearia = async (req, res) => {
       num_barbearia,
       bairro_barbearia,
       cep,
+      cidade,
+      estado,
+      ativo,
+      img_perfil_barbearia
     });
 
     return res.status(200).json({ Data });
