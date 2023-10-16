@@ -102,16 +102,18 @@ BarbeariaModels.belongsToMany(UsuarioModels, {
   as: "barbearia_usuario",
 });
 
-UsuarioModels.belongsToMany(BarbeariaModels,{
+UsuarioModels.belongsToMany(BarbeariaModels, {
   through: UsuarioBarberiaFavorModels,
   foreignKey: "id_usuario",
   as: "usuario_barber_favor",
-})
+});
 
 BarbeariaModels.belongsToMany(UsuarioModels, {
   through: UsuarioBarberiaFavorModels,
   foreignKey: "id_barbearia",
   as: "barber_usuario_favor",
 });
+
+
 
 module.exports = UsuarioModels;

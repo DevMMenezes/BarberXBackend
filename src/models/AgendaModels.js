@@ -1,5 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
 const Connection = require("../database");
+const UsuarioModels = require("../models/UsuarioModels");
 
 class AgendaModels extends Model {}
 
@@ -51,5 +52,6 @@ AgendaModels.init(
     tableName: "agenda",
   }
 );
+
 
 module.exports = AgendaModels;

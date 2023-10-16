@@ -2,6 +2,7 @@ const AgendaModels = require("../models/AgendaModels");
 const ConfigBarbeariaModels = require("../models/ConfigBarbeariaModels");
 const AgendaProcedimentosModels = require("../models/AgendaProcedimentosModels");
 const UsuarioBarbeariaModels = require("../models/UsuarioBarbeariaModels");
+const UsuarioModels = require("../models/UsuarioModels");
 
 const { Op } = require("sequelize");
 const { QueryTypes } = require("sequelize");
@@ -11,6 +12,37 @@ const {
   SomarHoras,
   SubtrairHoras,
 } = require("../utils/ValidarHorario");
+
+exports.getAgendaPorCliente = async (req, res) => {
+  try {
+    const { id_usuario } = req.params;
+
+    // await AgendaModels.sync({ alter: true });
+    const Data = await AgendaModels.findAll({
+      where: {
+        [Op.and]: [{ id_usuario: id_usuario }],
+      },
+    });
+
+    if (Data) {
+      var DataObject = Data;
+
+      for (x in DataObject) {
+        const User = await UsuarioModels.findByPk(DataObject[x].id_usuario);
+        const Barber = await UsuarioModels.findByPk(DataObject[x].id_barbearia);
+        if (User.dataValues) {
+          DataObject[x].dataValues["usuario"] = User.dataValues;
+          DataObject[x].dataValues["barber"] = Barber.dataValues;
+        }
+      }
+    }
+    // console.log(DataObject)
+
+    return res.status(200).json({ Data: DataObject });
+  } catch (error) {
+    return res.status(400).json({ error: error.message });
+  }
+};
 
 exports.getAgendaPorUsuario = async (req, res) => {
   try {
